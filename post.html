@@ -57,15 +57,20 @@
     if (!file) {
       document.getElementById("content").innerHTML = "<p>Invalid post.</p>";
     } else {
-      fetch("../posts/" + file)
+      
+      // FIXED: Correct path for GitHub Pages
+      fetch("posts/" + file)
         .then(res => res.text())
         .then(md => {
-          // Simple markdown formatter (only basics)
+
+          // Basic markdown formatting
           md = md.replace(/^# (.*$)/gim, "<h1>$1</h1>");
           md = md.replace(/^## (.*$)/gim, "<h2>$1</h2>");
           md = md.replace(/^### (.*$)/gim, "<h3>$1</h3>");
+
           md = md.replace(/\*\*(.*)\*\*/gim, "<b>$1</b>");
           md = md.replace(/\*(.*)\*/gim, "<i>$1</i>");
+
           md = md.replace(/`([^`]+)`/gim, "<code>$1</code>");
           md = md.replace(/\n\- (.*)/gim, "<li>$1</li>");
           md = md.replace(/\n/gim, "<br>");
