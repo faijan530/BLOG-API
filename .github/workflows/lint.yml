@@ -1,0 +1,17 @@
+name: Markdown Lint Check
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Run Markdown Lint
+        uses: nosborn/github-action-markdown-cli@v3
+        with:
+          files: posts/*.md

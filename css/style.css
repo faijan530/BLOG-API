@@ -1,0 +1,181 @@
+/* GLOBAL STYLING */
+/* ===== GLOBAL STYLING ===== */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", system-ui, sans-serif;
+
+  /* Animated Gradient Background (KEEPING SAME IMAGE) */
+  background: linear-gradient(120deg, #eef2ff, #f8fafc, #e0f2fe);
+  background-size: 400% 400%;
+  animation: bgAnimation 18s ease infinite;
+
+  /* SAME TEXTURE IMAGE */
+  background-image: url("https://www.transparenttextures.com/patterns/white-wall.png");
+  background-attachment: fixed;
+
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Gradient Animation */
+@keyframes bgAnimation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ===== HEADER ===== */
+header {
+  text-align: center;
+  padding: 4.5rem 1rem 1.5rem;
+}
+
+header h1 {
+  font-size: 4rem;
+  font-weight: 900;
+  color: #0f172a;
+  text-shadow: 0px 8px 18px rgba(0,0,0,0.22);
+  letter-spacing: 1.5px;
+  margin-bottom: 0.6rem;
+  animation: fadeIn 1.4s ease;
+}
+
+header p {
+  color: #475569;
+  font-size: 1.3rem;
+  opacity: 0.85;
+  animation: fadeIn 2s ease;
+}
+
+/* ===== SECTION TITLE ===== */
+h2 {
+  font-size: 2.3rem;
+  color: #1e3a8a;
+  margin-top: 3.5rem;
+  font-weight: 800;
+  text-align: center;
+  letter-spacing: 0.7px;
+  position: relative;
+  display: inline-block;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Blue Accent Line */
+h2::before {
+  content: "";
+  width: 6px;
+  height: 100%;
+  background: linear-gradient(#2563eb, #60a5fa);
+  position: absolute;
+  left: -16px;
+  top: 0;
+  border-radius: 4px;
+  animation: growLine 0.6s ease-out;
+}
+
+@keyframes growLine {
+  from { height: 0; }
+  to { height: 100%; }
+}
+
+/* ===== POSTS LIST ===== */
+#postList {
+  padding: 0;
+  max-width: 780px;
+  margin: 2.5rem auto 0;
+}
+
+/* ===== INDIVIDUAL POST CARD ===== */
+li {
+  list-style: none;
+}
+
+li a {
+  display: block;
+
+  /* Strong Glassmorphism Card */
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(14px) saturate(150%);
+  border-radius: 18px;
+
+  padding: 22px 28px;
+  margin: 22px 0;
+
+  font-size: 1.28rem;
+  font-weight: 600;
+  color: #1e40af;
+  text-decoration: none;
+
+  border: 1px solid rgba(255,255,255,0.45);
+  box-shadow: 0px 14px 40px rgba(0,0,0,0.12);
+
+  transition: all 0.32s ease;
+}
+
+/* Hover Glow + Lift Effect */
+li a:hover {
+  transform: translateY(-10px) scale(1.025);
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0px 20px 55px rgba(37, 99, 235, 0.40);
+  border-left: 8px solid #2563eb;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  text-align: center;
+  margin-top: 4rem;
+  padding: 2rem 0;
+  color: #475569;
+  font-size: 1rem;
+  opacity: 0.8;
+  animation: fadeInUp 1.3s ease;
+}
+
+/* ===== FADE ANIMATIONS ===== */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+/* ===== SEARCH BAR WRAPPER ===== */
+.search-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  animation: fadeIn 1.5s ease;
+}
+
+/* ===== SEARCH BAR (Premium Glass Look) ===== */
+#searchInput {
+  width: 50%;
+  max-width: 450px;
+  
+  padding: 14px 18px;
+  font-size: 1.1rem;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.6);
+
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+
+  color: #0f172a;
+  outline: none;
+
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+}
+
+#searchInput:focus {
+  border-color: #2563eb;
+  background: rgba(255,255,255,0.92);
+  box-shadow: 0 14px 45px rgba(37, 99, 235, 0.25);
+  transform: scale(1.02);
+}

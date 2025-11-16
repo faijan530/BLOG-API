@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog Post</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    body {
+      padding: 2rem;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .back-btn {
+      font-size: 18px;
+      font-weight: bold;
+      text-decoration: none;
+      color: #2563eb;
+      margin-bottom: 20px;
+      display: inline-block;
+    }
+
+    #content {
+      background: rgba(255,255,255,0.9);
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      font-size: 18px;
+      line-height: 1.7;
+    }
+
+    h1, h2, h3 {
+      color: #0f172a;
+    }
+
+    pre {
+      background: #f1f5f9;
+      padding: 15px;
+      border-radius: 8px;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+
+<body>
+
+  <a href="index.html" class="back-btn">← Back to Home</a>
+
+  <div id="content">Loading...</div>
+
+  <script>
+    // Get file from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const file = urlParams.get("file");
+
+    if (!file) {
+      document.getElementById("content").innerHTML = "<p>Invalid post.</p>";
+    } else {
+      fetch("../posts/" + file)
+        .then(res => res.text())
+        .then(md => {
+          // Simple markdown formatter (only basics)
+          md = md.replace(/^# (.*$)/gim, "<h1>$1</h1>");
+          md = md.replace(/^## (.*$)/gim, "<h2>$1</h2>");
+          md = md.replace(/^### (.*$)/gim, "<h3>$1</h3>");
+          md = md.replace(/\*\*(.*)\*\*/gim, "<b>$1</b>");
+          md = md.replace(/\*(.*)\*/gim, "<i>$1</i>");
+          md = md.replace(/`([^`]+)`/gim, "<code>$1</code>");
+          md = md.replace(/\n\- (.*)/gim, "<li>$1</li>");
+          md = md.replace(/\n/gim, "<br>");
+
+          document.getElementById("content").innerHTML = md;
+        })
+        .catch(err => {
+          document.getElementById("content").innerHTML = "Error loading post.";
+        });
+    }
+  </script>
+
+</body>
+</html>

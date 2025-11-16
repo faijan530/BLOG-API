@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Team Blog</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+
+<body>
+  <header>
+    <h1>Team Blog</h1>
+    <p>Collaborative writing powered by Git + GitHub</p>
+  </header>
+
+  <main>
+
+    <h2>Latest Posts</h2>
+
+    <!-- Center Search Bar -->
+    <div class="search-container">
+      <input type="text" id="searchInput" placeholder="Search posts..." onkeyup="searchPosts()">
+    </div>
+
+    <ul id="postList"></ul>
+  </main>
+
+  <footer>
+    <p>© 2025 Team Blog. Built with GitHub Pages.</p>
+  </footer>
+
+  <script>
+
+    // All posts here
+    const posts = ["post1.md", "post2.md"];
+
+    const list = document.getElementById("postList");
+
+    // Add posts to homepage
+    posts.forEach((p) => {
+      const title = p.replace(".md", "").replace(/-/g, " ");
+
+      const li = document.createElement("li");
+
+      // IMPORTANT: Open markdown using post.html
+      li.innerHTML = `<a href="post.html?file=${p}">${title}</a>`;
+      list.appendChild(li);
+    });
+
+    // Search function
+    function searchPosts() {
+      let input = document.getElementById('searchInput').value.toLowerCase();
+      let posts = document.querySelectorAll("#postList li");
+
+      posts.forEach(post => {
+        let text = post.innerText.toLowerCase();
+        post.style.display = text.includes(input) ? "" : "none";
+      });
+    }
+
+  </script>
+</body>
+</html>
